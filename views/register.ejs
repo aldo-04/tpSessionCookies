@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+
+<body style=<%=`background-color:${locals.user ? locals.user.color : null}`%>>
+    <header>
+        <navBar>
+            <ul>
+                <li>
+                    <a href="/">home</a>
+                </li>
+            </ul>
+        </navBar>
+    </header>
+    <main>
+ 
+        <form action="" method="POST">
+            <label for="nombre">Ingrese su nombre</label>
+            <input type="text" name="nombre" value="<%= locals.old && old.nombre ? old.nombre : "" %>">
+            <span><%= locals.errores && errores.nombre ? errores.nombre.msg : null %> </span>
+            <br>
+            <label for="email">Ingrese su email</label>
+            <input type="email" name="email" value="<%= locals.old && old.email ? old.email : "" %>">
+            <span><%= locals.errores && errores.email ? errores.email.msg : null %> </span>
+            <br>
+            <label for="edad">Ingrese su edad</label>
+            <input type="number" name="edad" value="<%= locals.old && old.edad ? old.edad : "" %>">
+            <span><%= locals.errores && errores.edad ? errores.edad.msg : null %> </span>
+            <br>
+            <select name="color" id="color">
+                <option selected hidden value="">Selecciona un color</option>
+                <% colores.forEach(color => { %>
+                 <option value="<%= color %>" <%= locals.old && old.color === color ? "selected" : null %>><%= color %> </option>
+                <% }) %>
+            </select>
+            <span><%= locals.errores && errores.color ? errores.color.msg : null %> </span>
+            <br>
+            <label for="recordar">Recordar mi color</label>
+            <input type="checkbox" name="recordar">
+            <input type="submit" value="Enviar">
+
+        </form>
+         <% if (!locals.errores && locals.old) { %>
+            <p>Hola <%= locals.old && old.nombre ? old.nombre : null %> tu Email es: <%= locals.old && old.email ? old.email : null %> tu edad es: <%= locals.old && old.edad ? old.edad : null %> y elegiste el color: <%= locals.old && old.color ? old.color : null %></p>
+         <% } %> 
+            
+    </main>
+</body>
+</html>

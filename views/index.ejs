@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body style=<%=`background-color:${locals.user ? locals.user.color : null}`%>>
+    <header>
+      <nav>
+        <a href="/register">Registrate</a>
+        <br>
+        <a href="/">Home</a>
+      </nav>
+    </header>
+    <main>
+      <% if (locals.user && locals.user.nombre) { %>
+        <h1>hola <%= locals.user.nombre %> gracias por visitarnos </h1>
+      <% } %>
+      <% if (locals.user && locals.user.nombre) { %>
+       <br>
+       <a href="/destroy">Eliminar color y session</a>
+      <% } %>
+    </main>
+  </body>
+</html>
